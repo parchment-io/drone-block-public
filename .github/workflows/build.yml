@@ -3,6 +3,9 @@ name: build image
 on:
   push:
     branches: main
+  release:
+    types:
+      - published
 
 jobs:
   build:
@@ -20,6 +23,5 @@ jobs:
                --password-stdin docker.pkg.github.com
       - name: build the image
         run: docker buildx build --push --platform linux/amd64,linux/arm/v7,linux/arm64
-               --tag docker.pkg.github.com/parchment-io/drone-public-blocker/img:latest
-               --tag docker.pkg.github.com/parchment-io/drone-public-blocker/img:{{ github.ref }}
+               --tag docker.pkg.github.com/parchment-io/drone-public-blocker/img:latest,docker.pkg.github.com/parchment-io/drone-public-blocker/img:{{ github.ref }}
                .
