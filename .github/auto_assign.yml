@@ -1,0 +1,12 @@
+# Set to true to add reviewers to pull requests
+addReviewers: false
+
+# Set to true to add assignees to pull requests
+addAssignees: author
+
+# Set to true to add assignees from different groups to pull requests
+useAssigneeGroups: false
+
+# A list of keywords to be skipped the process that add reviewers if pull requests include it
+skipKeywords:
+  - "[wip]"
