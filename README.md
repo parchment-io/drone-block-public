@@ -19,7 +19,7 @@ $ docker run -d \
   --env=DRONE_DEBUG=true \
   --env=DRONE_SECRET=bea26a2221fd8090ea38720fc445eca6 \
   --restart=always \
-  --name=drone-public-blocker docker.pkg.github.com/parchment-io/drone-public-blocker/img:latest
+  --name=drone-public-blocker docker.pkg.github.com/parchment-io/drone-public-blocker/amd64:latest
 ```
 
 Update your Drone server configuration to include the plugin address and the shared secret.
