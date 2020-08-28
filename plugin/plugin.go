@@ -21,11 +21,11 @@ type plugin struct {
 
 func (p *plugin) Validate(ctx context.Context, req *validator.Request) error {
 	if req.Repo.Visibility == "public" {
-		logrus.Infof("Repo %s is public, blocking build %d", req.Repo.Slug, req.Build.Id)
+		logrus.Infof("Repo %s is public, blocking build %d", req.Repo.Slug, req.Build.ID)
 		return validator.ErrBlock
 	}
 
 	// a nil error indicates the configuration is valid.
-	logrus.Infof("Allowing build %d in repo %s", req.Build.Id, req.Repo.Slug)
+	logrus.Infof("Allowing build %d in repo %s", req.Build.ID, req.Repo.Slug)
 	return nil
 }
