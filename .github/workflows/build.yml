@@ -1,11 +1,7 @@
 name: build image
 
 on:
-  push:
-    branches: main
-  release:
-    types:
-      - published
+  pull_request:
 
 jobs:
   build:
@@ -13,18 +9,5 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-      # - name: install buildx
-      #   id: buildx
-      #   uses: crazy-max/ghaction-docker-buildx@v1
-      #   with:
-      #     buildx-version: latest
-      - name: set env
-        run: echo ::set-env name=IMAGE_TAG::${GITHUB_REF#refs/*/}
-      - name: login to github registry
-        run: echo "${{ secrets.GH_DOCKER_PASSWORD }}" | docker login -u "${{ secrets.GH_DOCKER_USERNAME }}" --password-stdin docker.pkg.github.com
       - name: build image
-        run: docker build -t docker.pkg.github.com/parchment-io/drone-public-blocker/amd64:$IMAGE_TAG -t docker.pkg.github.com/parchment-io/drone-public-blocker/amd64:latest .
-      - name: push images
-        run: docker push docker.pkg.github.com/parchment-io/drone-public-blocker/amd64:$IMAGE_TAG && docker push docker.pkg.github.com/parchment-io/drone-public-blocker/amd64:latest
-      # - name: build the arm64 image
-      #   run: docker buildx build --push --platform linux/ard64 --tag docker.pkg.github.com/parchment-io/drone-public-blocker/arm64:$IMAGE_TAG --tag docker.pkg.github.com/parchment-io/drone-public-blocker/arm64:latest .
+        run: docker build -t docker.pkg.github.com/parchment-io/drone-public-blocker/amd64:latest .
